@@ -1,0 +1,29 @@
+ spring:
+  application:
+    name: API-GATEWAY-TELECOM
+  cloud:
+    consul:
+      discovery:
+        hostname: localhost
+    gateway:
+      mvc:
+        routes:
+         - id: PLAN-SERVICE
+           uri: lb://PLAN-SERVICE
+           predicates:
+           - Path=/planservice/plan/**
+           #to add multiple url i.e multiple controller
+           # Path=/userservice/users/**,/userservice/staff/**
+        
+         - id: CUSTOMER-SERVICE
+           uri: lb://CUSTOMER-SERVICE
+           predicates:
+           - Path=/customerservice/customer/**
+        
+         - id: FRIENDFAMILY-SERVICE
+           uri: lb://FRIENDFAMILY-SERVICE
+           predicates:
+           - Path=/friendfamilyservice/friendfamily/**
+ 
+
+       
